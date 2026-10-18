@@ -28,8 +28,16 @@ Team beta — spec §3.2 hackathon build.
 - *Provider API drift*: breaking changes in AWS/Azure/GCP reservation APIs could halt automation. Mitigation – versioned SDK wrappers with automated contract tests.  
 - *Forecast error cost*: Over‑optimistic forecasts may cause under‑commitment and spikes. Mitigation – conservative safety‑margin band and continuous back‑testing alerts.  
 
-**Fallback Scope (if risks materialise)**  
-- Roll back to *batch‑only* mode: generate weekly CSV recommendation reports for manual execution.  
-- Replace live ML with rule‑based thresholds (e.g., 80 % utilization) while keeping unified ingestion and audit trail.  
+**Fallback Scope (if risks materialise)**
+- Roll back to *batch‑only* mode: generate weekly CSV recommendation reports for manual execution.
+- Replace live ML with rule‑based thresholds (e.g., 80 % utilization) while keeping unified ingestion and audit trail.
+
+**How to Run**
+1. Create virtual environment: `python3 -m venv venv`
+2. Activate environment: `source venv/bin/activate`
+3. Install dependencies: `pip install -r requirements.txt`
+4. Run the application: `python -m src.commitmentsync.main`
+5. Access health endpoint: `GET http://localhost:8000/health`
+6. Test optimization endpoint: `POST http://localhost:8000/optimize` with JSON payload
 
 Built entirely by an AI coding agent across discrete GitHub Actions build turns (spec §8) — no human-written code.
