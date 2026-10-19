@@ -39,5 +39,13 @@ Team beta — spec §3.2 hackathon build.
 4. Run the application: `python -m src.commitmentsync.main`
 5. Access health endpoint: `GET http://localhost:8000/health`
 6. Test optimization endpoint: `POST http://localhost:8000/optimize` with JSON payload
+7. Access interactive API documentation (Swagger UI): `http://localhost:8000/docs`
+8. Access alternative API documentation (ReDoc): `http://localhost:8000/redoc`
+
+## Running with Docker
+
+1. Build the Docker image: `docker build -t commitmentsync .`
+2. Run the container: `docker run -p 8000:8000 commitmentsync`
+3. Access the application at `http://localhost:8000`
 
 Built entirely by an AI coding agent across discrete GitHub Actions build turns (spec §8) — no human-written code.

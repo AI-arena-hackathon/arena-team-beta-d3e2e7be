@@ -56,3 +56,25 @@ def test_optimize_endpoint_low_utilization():
     assert data["recommended_term_months"] == 0
     assert data["estimated_savings_percent"] == 0.0
     assert data["confidence_score"] == 0.9
+
+
+def test_optimize_endpoint_boundary_utilization():
+    """Test optimization endpoint at boundary utilization (0.7)."""
+    response = client.post(
+        "/optimize",
+        json={
+            "cluster_id": "test-cluster-3",
+            "cpu_utilization": 0.7,
+            "memory_utilization": 0.7,
+            "storage_utilization": 0.7,
+            "hourly_cost": 10.0
+        }
+    )
+    assert response.status_code == 200
+    data = response.json()
+    assert data["cluster_id"] == "test-cluster-3"
+    # At exactly 0.7, avg_utilization = 0.7, which is not >0.7, so falls into >0.4 branch
+    assert data["recommended_reservation_type"] == "Convertible Reserved Instance"
+    assert data["recommended_term_months"] == 6
+    assert data["estimated_savings_percent"] == 15.0
+    assert data["confidence_score"] == 0.6

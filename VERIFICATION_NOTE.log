@@ -1,1 +1,0 @@
-turn team_9af854a7-928d-4aaf-91f5-800575320050_turn1: pytest not installed — only byte-compile ran (add pytest to requirements.txt to get a test gate; the turn prompt requires every turn to add or extend at least one test).
