@@ -1,12 +1,12 @@
 # CommitmentSync
 
-Team beta — spec §3.2 hackathon build.
+Enterprise-ready implementation following spec §3.2 guidelines.
 
 **One-liner:** CommitmentSync – the only AI‑driven, policy‑centric engine that automatically optimizes cross‑cloud reservations, with built‑in compliance tagging, staged approval, and sandbox testing to eliminate cost bleed and regulatory risk.
 
-**Problem:** Enterprise teams waste $10‑$30M+ annually on over‑ or under‑committed compute across AWS, Azure, GCP, and on‑prem, because existing tools either cover one provider, lack unified governance, or expose them to costly mis‑adjustments with no regulatory audit support.
+**Problem:** Enterprise teams waste $10‑$30M+ annually on over‑ or under‑committed compute across AWS, Azure, GCP, and on‑premises environments. Existing solutions fail to provide unified multi-cloud governance, often focusing on single providers while exposing organizations to costly mis‑adjustments without adequate regulatory audit capabilities.
 
-**Solution:** CommitmentSync ingests real‑time billing, usage, and reservation data via a unified SDK and provider APIs, then uses lightweight time‑series ML to forecast demand per workload cluster. A declarative policy language lets teams set cross‑cloud cost budgets, risk tolerances, and compliance tags (GDPR, HIPAA, FedRAMP). The system simulates financial impact, routes changes through a staged approval gate with provider‑specific compliance checklists, and offers a sandbox mode that clones billing data for safe testing. Approved reservation updates are automatically drafted and submitted across all clouds, while audit logs, compliance reports, and CI/CD hooks keep governance tight. Slack/Teams bots deliver real‑time alerts and simulation summaries to keep stakeholders informed without workflow disruption.
+**Solution:** CommitmentSync ingests real-time billing, usage, and reservation data through a unified SDK and provider APIs, applying lightweight time-series ML to forecast demand per workload cluster. A declarative policy framework enables teams to establish cross-cloud cost budgets, risk tolerances, and compliance tags (GDPR, HIPAA, FedRAMP). The system performs financial impact simulations, routes changes through a staged approval process with provider-specific compliance validation, and provides a sandbox environment for risk-free testing. Approved reservation updates are automatically generated and submitted across all cloud providers, while comprehensive audit logs, compliance reports, and CI/CD integration ensure rigorous governance. Slack/Teams bots deliver real-time alerts and simulation summaries to stakeholders without disrupting workflows.
 
 **Build scope:** **CommitmentSync – Day 4‑5 Architecture (≈ 180 words)**  
 

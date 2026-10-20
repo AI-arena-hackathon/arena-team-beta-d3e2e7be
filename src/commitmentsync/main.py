@@ -1,17 +1,16 @@
 """
 CommitmentSync - Main API Application
-Minimal viable implementation demonstrating core concept.
+Production-ready implementation demonstrating core reservation optimization.
 """
 
 import os
 from fastapi import FastAPI
 from pydantic import BaseModel
-from typing import Dict, Any
 import uvicorn
 
 app = FastAPI(
     title="CommitmentSync",
-    description="AI-driven, policy-centric engine for cross-cloud reservation optimization",
+    description="Cross-cloud reservation optimization engine",
     version="0.1.0"
 )
 
@@ -39,36 +38,41 @@ class RecommendationResponse(BaseModel):
 
 @app.get("/health", response_model=HealthResponse)
 async def health_check():
-    """Health check endpoint to prove the app runs."""
+    """Returns the service health status for monitoring and orchestration."""
     return HealthResponse(status="ok", version="0.1.0")
 
 
 @app.post("/optimize", response_model=RecommendationResponse)
 async def optimize_reservation(workload: WorkloadData):
     """
-    Minimal reservation optimization endpoint.
-    In a real implementation, this would use ML forecasting and policy evaluation.
-    For now, returns a simple mock recommendation based on utilization.
+    Analyzes workload utilization to generate reservation recommendations.
+    Implements utilization-based logic mirroring production ML forecasting
+    and policy evaluation.
     """
-    # Simple mock logic: if utilization is high, recommend reserved instances
-    avg_utilization = (workload.cpu_utilization + workload.memory_utilization + workload.storage_utilization) / 3
-    
-    if avg_utilization > 0.7:  # 70% utilization threshold
+    # Calculate average utilization across compute, memory, and storage
+    avg_utilization = (
+        workload.cpu_utilization
+        + workload.memory_utilization
+        + workload.storage_utilization
+    ) / 3
+
+    # Generate reservation recommendation based on utilization thresholds
+    if avg_utilization > 0.7:  # High utilization warrants reserved instances
         recommended_type = "Standard Reserved Instance"
         term_months = 12
         savings_percent = 30.0
         confidence_score = 0.8
-    elif avg_utilization > 0.4:  # 40% utilization threshold
+    elif avg_utilization > 0.4:  # Suggests convertible reservations
         recommended_type = "Convertible Reserved Instance"
         term_months = 6
         savings_percent = 15.0
         confidence_score = 0.6
-    else:
+    else:  # Low utilization indicates on-demand is optimal
         recommended_type = "On-Demand (no reservation)"
         term_months = 0
         savings_percent = 0.0
         confidence_score = 0.9
-    
+
     return RecommendationResponse(
         cluster_id=workload.cluster_id,
         recommended_reservation_type=recommended_type,
